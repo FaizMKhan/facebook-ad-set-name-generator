@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Facebook Adset Name Generator - Generate Adset Names for Facebook and Instagram</title>
+<meta name="description" content="Generate ad set names for Facebook and Instagram based on targeted area, audience, age group, and budget. Developed by Faiz Mohammad Khan, Senior Consultant in WordPress and Digital Marketing.">
+<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+<style>
+    /* Custom Styles */
+    body {
+        background-color: #f0f0f0; /* Light grey background */
+        font-family: Arial, sans-serif;
+    }
+    .container {
+        max-width: 800px;
+        margin: 50px auto;
+        background-color: #ffffff; /* White background for container */
+        padding: 30px;
+        border-radius: 8px;
+        box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1); /* Soft shadow */
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #4285f4; /* Material blue */
+    }
+    .form-section {
+        margin-bottom: 20px;
+    }
+    label {
+        font-weight: bold;
+        color: #555555; /* Dark grey */
+    }
+    .form-control {
+        border: 1px solid #dddddd; /* Light grey border */
+    }
+    .btn-primary {
+        background-color: #4285f4; /* Material blue for primary button */
+        border: none;
+    }
+    .btn-primary:hover {
+        background-color: #2a5db0; /* Darker shade on hover */
+    }
+    .generated-section {
+        margin-top: 30px;
+        padding: 20px;
+        background-color: #f8f9fa; /* Light grey background for generated section */
+        border: 1px solid #ced4da; /* Border color */
+        border-radius: 5px;
+    }
+    #adSetName {
+        font-size: 18px;
+        font-weight: bold;
+        color: #333333; /* Dark text color */
+    }
+    .developer-info {
+        background-color: #f0f0f0; /* Light grey background */
+        border: 1px solid #999999; /* Dark grey border */
+        border-radius: 8px;
+        padding: 15px;
+        margin-top: 20px;
+        text-align: center;
+    }
+    .developer-info span {
+        display: block;
+        margin-bottom: 10px;
+    }
+    .developer-info a {
+        color: #555555; /* Dark grey text color for links */
+        text-decoration: none; /* Remove underline */
+    }
+    .developer-info a:hover {
+        text-decoration: underline; /* Add underline on hover */
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h2>Facebook Ad Name Generator</h2>
+    <div class="form-section">
+        <form id="adSetForm">
+            <div class="form-group">
+                <label for="targetedArea">Targeted Area:</label>
+                <input type="text" class="form-control" id="targetedArea" required>
+            </div>
+            <div class="form-group">
+                <label for="targetedAudience">Targeted Audience:</label>
+                <input type="text" class="form-control" id="targetedAudience" required>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="ageFrom">Age From:</label>
+                    <select class="form-control" id="ageFrom" required>
+                        <option value="">Select Age</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="ageTo">Age To:</label>
+                    <select class="form-control" id="ageTo" required>
+                        <option value="">Select Age</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Platforms:</label><br>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="facebookCheckbox" value="Facebook">
+                    <label class="form-check-label" for="facebookCheckbox">Facebook</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="checkbox" id="instagramCheckbox" value="Instagram">
+                    <label class="form-check-label" for="instagramCheckbox">Instagram</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="budget">Budget:</label>
+                <input type="text" class="form-control" id="budget" required>
+            </div>
+            <div class="form-group">
+                <label for="budgetType">Budget Type:</label>
+                <select class="form-control" id="budgetType" required>
+                    <option value="Daily Budget">Daily Budget</option>
+                    <option value="Lifetime Budget">Lifetime Budget</option>
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block">Generate Ad Set Name</button>
+        </form>
+    </div>
+    <div class="generated-section">
+        <label for="adSetName">Generated Ad Set Name:</label>
+        <p id="adSetName" class="form-control"></p>
+        <button id="copyButton" class="btn btn-secondary">Copy to Clipboard</button>
+    </div>
+    <div class="developer-info">
+        <span>Developed by: Faiz Mohammad Khan</span>
+        <span>Profile: Senior Consultant - WordPress and Digital Marketing</span>
+        <span>Country: India</span>
+        <span>Email: <a href="mailto:faizcmps@gmail.com">faizcmps@gmail.com</a></span>
+        <span>Website: <a href="https://www.digitalfuture.mydt.in" target="_blank">www.digitalfuture.mydt.in</a></span>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const adSetForm = document.getElementById('adSetForm');
+    const copyButton = document.getElementById('copyButton');
+    const ageFromSelect = document.getElementById('ageFrom');
+    const ageToSelect = document.getElementById('ageTo');
+
+    // Function to populate age options from 18 to 65
+    function populateAgeOptions() {
+        for (let i = 18; i <= 65; i++) {
+            ageFromSelect.innerHTML += `<option value="${i}">${i}</option>`;
+            ageToSelect.innerHTML += `<option value="${i}">${i}</option>`;
+        }
+    }
+
+    // Call function to populate age options on page load
+    populateAgeOptions();
+
+    adSetForm.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        const targetedArea = document.getElementById('targetedArea').value;
+        const targetedAudience = document.getElementById('targetedAudience').value;
+        const ageFrom = ageFromSelect.value;
+        const ageTo = ageToSelect.value;
+        const facebookChecked = document.getElementById('facebookCheckbox').checked;
+        const instagramChecked = document.getElementById('instagramCheckbox').checked;
+        const budget = document.getElementById('budget').value;
+        const budgetType = document.getElementById('budgetType').value;
+
+        let adSetName = `${targetedArea}_${targetedAudience}_${ageFrom}-${ageTo}`;
+
+        if (facebookChecked) {
+            adSetName += '_FB';
+        }
+        if (instagramChecked) {
+            adSetName += '_IG';
+        }
+
+        adSetName += `_${budget}`;
+
+        if (budgetType === 'Daily Budget') {
+            adSetName += '₹';
+        } else if (budgetType === 'Lifetime Budget') {
+            adSetName += '₹';
+        }
+
+        const adSetNameField = document.getElementById('adSetName');
+        adSetNameField.textContent = adSetName;
+
+        copyButton.addEventListener('click', function() {
+            navigator.clipboard.writeText(adSetName)
+                .then(() => {
+                    alert('Ad set name copied to clipboard!');
+                })
+                .catch(err => {
+                    console.error('Failed to copy: ', err);
+                });
+        });
+    });
+});
+</script>
+</body>
+</html>
