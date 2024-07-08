@@ -166,7 +166,7 @@ document.addEventListener('DOMContentLoaded', function() {
     adSetForm.addEventListener('submit', function(event) {
         event.preventDefault();
 
-        const targetedArea = document.getElementById('targetedArea').value;
+        const targetedArea = document.getElementById('targetedArea').value.replace(/ /g, '');
         const targetedAudience = document.getElementById('targetedAudience').value;
         const ageFrom = ageFromSelect.value;
         const ageTo = ageToSelect.value;
