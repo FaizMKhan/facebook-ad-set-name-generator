@@ -167,13 +167,13 @@ document.addEventListener('DOMContentLoaded', function() {
         event.preventDefault();
 
         const targetedArea = document.getElementById('targetedArea').value.replace(/ /g, '');
-        const targetedAudience = document.getElementById('targetedAudience').value;
+        const targetedAudience = document.getElementById('targetedAudience').value.replace(/ /g, '');
         const ageFrom = ageFromSelect.value;
         const ageTo = ageToSelect.value;
         const facebookChecked = document.getElementById('facebookCheckbox').checked;
         const instagramChecked = document.getElementById('instagramCheckbox').checked;
-        const budget = document.getElementById('budget').value;
-        const budgetType = document.getElementById('budgetType').value;
+        const budget = document.getElementById('budget').value.replace(/ /g, '');
+        const budgetType = document.getElementById('budgetType').value.replace(/ /g, '');
 
         let adSetName = `${targetedArea}_${targetedAudience}_${ageFrom}-${ageTo}`;
 
